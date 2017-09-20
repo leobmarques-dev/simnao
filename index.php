@@ -2,6 +2,7 @@
 <head>
 	<link rel="stylesheet" media="all" href="stylesheet.css" />
 	<script type="text/javascript" src="jquery-3.2.1.slim.min.js"></script>
+	<script type="text/javascript" src="angular.min.js"></script>
 	<script type="text/javascript" src="funcoes.js"></script>
 </head>
 <body>
@@ -41,6 +42,12 @@
 		</form>
 	</div>
 
+</div>
+
+<div data-ng-app="Resultado" data-ng-controller="myCtrl" data-ng-init="resNome='John';resNumPrgt='10';resVoto='SIM'">
+  <p>Nome: {{resNome}}</p>
+  <p>Pergunta: {{resNumPrgt}}</p>
+  <p>Voto: {{resVoto}}</p>
 </div>
 
 </body>

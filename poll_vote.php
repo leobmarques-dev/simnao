@@ -1,14 +1,27 @@
 <?php
+$dataHora = date(DATE_ATOM);
+$dataSimples = date("Y-m-d");
 $vote = $_REQUEST['vote'];
 $userName = $_REQUEST['userName'];
 $pergunta = $_REQUEST['Pergunta'];
 $votoUser = "";
 
 //get content of textfile
-$fileVotos = "poll_result.txt";
+$fileVotos = "data/".$dataSimples."_totalDias.txt";
+if(!file_exists($fileVotos)){
+	$fp = fopen($fileVotos,"w");
+	fputs($fp, "0||0");
+	fclose($fp);
+}
+
 $totalVotos = file($fileVotos);
 
-$fileUsers = "poll_users.csv";
+$fileUsers = "votos/".$dataSimples."_UserVotos.csv";
+// Cria o arquivo caso nao exista
+if(!file_exists($fileVotos)){
+	$fp = fopen($fileVotos,"w+");
+	fclose($fp);
+}
 $regUsers = file($fileUsers);
 
 //put content in array
@@ -28,12 +41,11 @@ if ($vote == 0) {
 
 //insert votes to txt file
 $insertvote = $yes."||".$no;
-$fp = fopen($fileVotos,"w");
+$fp = fopen($fileVotos,"w+");
 fputs($fp,$insertvote);
 fclose($fp);
 
 //registra votos usuarios no arquivo txt
-$dataHora = date(DATE_ATOM);
 $insertUser = $dataHora.";".$userName.";".$vote.";"."\n";
 file_put_contents("$fileUsers", $insertUser, FILE_APPEND);
 

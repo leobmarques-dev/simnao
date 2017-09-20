@@ -16,7 +16,7 @@ function getPergunta(txt) {
 }
 
 function getVote(voto) {
-	alert(nome);
+	//alert(nome);
 	if (window.XMLHttpRequest) {
     // code for IE7+, Firefox, Chrome, Opera, Safari
     xmlhttp=new XMLHttpRequest();
@@ -35,3 +35,11 @@ function getVote(voto) {
 function enviaTudo(voto, nome){
 	console.log("NOME",nome)
 }
+
+var app = angular.module('Resultado', []);
+app.controller('myCtrl', function($scope) {
+    $scope.resNome= nome;
+    $scope.resNumPrgt= pergunta;
+    $scope.resVoto= voto;
+});
+console.log(app.resNome)
